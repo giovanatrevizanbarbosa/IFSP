@@ -27,7 +27,7 @@ public class ProductDataset{
     }
 
     public Product getProduct(int id){
-        for(Product p : dataset) if(Product.getId() == id) return p;
+        for(Product p : dataset) if(p.getId() == id) return p;
         return null;
     }
 }

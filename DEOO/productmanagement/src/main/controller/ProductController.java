@@ -19,8 +19,21 @@ public class ProductController{
         return service.save(product);
     }
 
-    public boolean delete(int id){
-        return service.remove(id);
+    public boolean updateById(int id, ProductDto updatedProduct){
+        for(Product p : service.getAllProducts()){
+            if (p.getId() == id){
+                p.setName(updatedProduct.getName());
+                p.setDescription(updatedProduct.getDescription());
+                p.setPrice(updatedProduct.getPrice());
+                p.setStock(updatedProduct.getStock());
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean deleteById(int id){
+        return service.deleteById(id);
     }
 
     public List<ProductDto> getAllProducts(){

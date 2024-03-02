@@ -4,9 +4,11 @@ import dto.ProductDto;
 
 import java.util.Scanner;
 
+import static view.Options.ADICIONAR_PRODUTO;
+
 public class Utils{
     private final static Scanner scanner = new Scanner(System.in);
-    private final static String line = "--------------------------------------";
+    private final static String line = "\n--------------------------------------";
 
     public static int readInteger(String msg){
         System.out.println(line);
@@ -15,7 +17,7 @@ public class Utils{
     }
 
     public static Options menu(){
-        System.out.println(line);
+        System.out.println("\n--------------------------------------");
         System.out.println("MENU");
         System.out.println("1 - ADICIONAR PRODUTO");
         System.out.println("2 - REMOVER PRODUTO");
@@ -33,10 +35,14 @@ public class Utils{
         };
     }
 
-    public static ProductDto readProduct(){
+    public static ProductDto readProduct(Options option){
         System.out.println(line);
         scanner.nextLine();
-        System.out.println("CADASTRO DE PRODUTO");
+        if((option == ADICIONAR_PRODUTO)){
+            System.out.println("CADASTRO DE PRODUTO");
+        }else{
+            System.out.println("ATUALIZAÇÃO DE PRODUTO");
+        }
         System.out.print("NOME.............: ");
         String name = scanner.nextLine();
         System.out.print("DESCRIÇÃO..: ");
@@ -52,10 +58,11 @@ public class Utils{
 
     public static void showProduct(ProductDto product){
         System.out.println(line);
-        System.out.println("NOME: " + product.getName());
-        System.out.println("\t:DESCRIÇÃO " + product.getDescription());
-        System.out.println("\tPREÇO: " + product.getPrice());
-        System.out.print("\tQUANTIDADE EM ESTOQUE: " + product.getStock());
+        System.out.println("ID: " + product.getId());
+        System.out.println("\nNOME: " + product.getName());
+        System.out.println("\nDESCRIÇÃO: " + product.getDescription());
+        System.out.println("\nPREÇO: " + product.getPrice());
+        System.out.print("\nQUANTIDADE EM ESTOQUE: " + product.getStock());
     }
 
     public static void showMessage(String msg){
@@ -64,9 +71,5 @@ public class Utils{
         System.out.println(line);
         System.out.println();
         System.out.println(msg.toUpperCase());
-        System.out.println();
-        System.out.println(line);
-        System.out.println();
-        System.out.println();
     }
 }

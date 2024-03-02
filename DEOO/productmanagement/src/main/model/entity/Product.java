@@ -1,26 +1,27 @@
 package model.entity;
 
 public class Product{
-    private static int id = 0;
+    private static int productSequence = 0;
+    private int id;
     private String name;
     private String description;
     private double price;
     private int stock;
 
     public Product(String name, String description, double price, int stock){
-        id = getNextId();
+        this.id = nextVal();
         this.name = name;
         this.description = description;
         this.price = price;
         this.stock = stock;
     }
 
-    public static int getId(){
-        return id;
+    private static int nextVal(){
+        return ++productSequence;
     }
 
-    private int getNextId(){
-        return id++;
+    public int getId(){
+        return id;
     }
 
     public String getName(){

@@ -7,7 +7,7 @@ import model.entity.Product;
 import java.util.List;
 
 public class ProductService{
-    private ProductDao dao;
+    private final ProductDao dao;
     public ProductService(){
         dao = ProductDaoImpl.getInstance();
     }
@@ -19,8 +19,12 @@ public class ProductService{
         return false;
     }
 
-    public boolean remove(int id){
+    public boolean deleteById(int id){
         return dao.deleteById(id);
+    }
+
+    public boolean updateById(int id, Product product){
+        return dao.updateById(id, product);
     }
 
     public List<Product> getAllProducts(){

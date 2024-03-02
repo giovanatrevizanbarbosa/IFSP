@@ -3,14 +3,13 @@ package dto;
 import model.entity.Product;
 
 public class ProductDto{
-    private static int id = 0;
+    private int id;
     private String name;
     private String description;
     private double price;
     private int stock;
 
     public ProductDto(String name, String description, double price, int stock){
-        id = getNextId();
         this.name = name;
         this.description = description;
         this.price = price;
@@ -18,7 +17,7 @@ public class ProductDto{
     }
 
     public ProductDto(Product product){
-        id = getNextId();
+        this.id = product.getId();
         this.name = product.getName();
         this.description = product.getDescription();
         this.price = product.getPrice();
@@ -32,12 +31,8 @@ public class ProductDto{
                 ,getStock());
     }
 
-    public static int getId(){
+    public int getId(){
         return id;
-    }
-
-    private int getNextId(){
-        return id++;
     }
 
     public String getName(){

@@ -2,10 +2,15 @@ package model.dao;
 
 import model.entity.Product;
 
+import java.util.ArrayList;
 import java.util.List;
 public class ProductDaoImpl implements ProductDao{
     private static ProductDaoImpl instance;
     private List<Product> products;
+
+    public ProductDaoImpl(){
+        products = new ArrayList<Product>();
+    }
 
     public static ProductDaoImpl getInstance(){
         if(instance == null) instance = new ProductDaoImpl();
@@ -19,7 +24,7 @@ public class ProductDaoImpl implements ProductDao{
 
     @Override
     public Product findById(int id){
-        for(Product p : products) if(Product.getId() == id) return p;
+        for(Product p : products) if(p.getId() == id) return p;
         return null;
     }
 
@@ -29,12 +34,13 @@ public class ProductDaoImpl implements ProductDao{
     }
     @Override
     public boolean updateById(int id, Product product){
-        return products.set(id, product) != null;
+        for(Product p : products) if (p.getId() == id) return (products.set(id, product) != null);
+        return false;
     }
     @Override
     public boolean deleteById(int id){
         for(Product p : products) {
-            if(Product.getId() == id) return products.remove(p);
+            if(p.getId() == id) return products.remove(p);
         }
         return false;
     }
