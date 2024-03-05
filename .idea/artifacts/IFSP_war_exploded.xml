@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="IFSP:war exploded">
+    <output-path>$PROJECT_DIR$/WEB1/RegisterApp</output-path>
+    <root id="root" />
+  </artifact>
+</component>
