@@ -1,10 +1,6 @@
 package br.edu.ifsp.arq.web1;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import static java.time.LocalDate.parse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,7 +8,11 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
-import static java.time.LocalDate.parse;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/send")
 public class FormServlet extends HttpServlet {
