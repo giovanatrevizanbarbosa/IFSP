@@ -1,4 +1,4 @@
-package br.edu.ifsp.arq.web1.servlets;
+package br.edu.ifsp.arq.web1.projetojstl.servlet;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,8 +10,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import br.edu.ifsp.arq.web1.model.Person;
-import br.edu.ifsp.arq.web1.model.PersonUtil;
+import br.edu.ifsp.arq.web1.projetojstl.model.Person;
+import br.edu.ifsp.arq.web1.projetojstl.model.PersonUtil;
 
 
 @WebServlet("/ServletPeople")
