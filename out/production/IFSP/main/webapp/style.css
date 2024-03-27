@@ -1,0 +1,39 @@
+body {
+    background-color: #222;
+    color: #fff;
+}
+
+.main-container{
+    border: 1px solid #444;
+    border-radius: 4px;
+    background-color: #333;
+    width: auto;
+    height: auto;
+}
+
+.sub-container input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #444;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.sub-container button{
+    margin-top: 8px;
+    margin-bottom: 8px;
+    width: 100%;
+}
+
+.sub-container button:hover {
+    filter: brightness(0.8);
+    transition: 200ms ease-in 50ms;
+}
+
+#p-hello{
+	margin: 0;
+}
