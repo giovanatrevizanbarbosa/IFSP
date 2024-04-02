@@ -1,5 +1,5 @@
 @charset "UTF-8";
 
-button, a, span{
+.btn, a{
     width: 100%;
 }
