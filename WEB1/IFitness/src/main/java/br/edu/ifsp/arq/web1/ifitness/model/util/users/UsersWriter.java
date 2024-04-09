@@ -1,6 +1,7 @@
 package br.edu.ifsp.arq.web1.ifitness.model.util.users;
 
 import br.edu.ifsp.arq.web1.ifitness.model.User;
+import br.edu.ifsp.arq.web1.ifitness.model.util.LocalDateTypeAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -14,7 +15,7 @@ public class UsersWriter {
     public static boolean write(User user){
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).create();
         List<User> users = UsersReader.read();
-        String path = "C:\\Users\\gitre\\IdeaProjects\\IFSP\\WEB1\\IFitness\\src\\main\\resources\\json\\users.json";
+        String path = "C:/Users/gitre/IdeaProjects/IFSP/WEB1/IFitness/src/main/resources/json/users.json";
 
         if(users ==  null){
             // quando não tem nenhum objeto cadastrado

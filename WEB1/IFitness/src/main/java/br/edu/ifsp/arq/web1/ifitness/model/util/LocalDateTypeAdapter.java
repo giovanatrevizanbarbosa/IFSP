@@ -1,4 +1,4 @@
-package br.edu.ifsp.arq.web1.ifitness.model.util.users;
+package br.edu.ifsp.arq.web1.ifitness.model.util;
 
 import com.google.gson.*;
 

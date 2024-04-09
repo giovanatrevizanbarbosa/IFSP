@@ -1,6 +1,7 @@
 package br.edu.ifsp.arq.web1.ifitness.model.util.users;
 
 import br.edu.ifsp.arq.web1.ifitness.model.User;
+import br.edu.ifsp.arq.web1.ifitness.model.util.LocalDateTypeAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -13,7 +14,7 @@ public class UsersReader {
     public static List<User> read(){
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).create();
         List<User> users = null;
-        String path = "C:\\Users\\gitre\\IdeaProjects\\IFSP\\WEB1\\IFitness\\src\\main\\resources\\json\\users.json";
+        String path = "C:/Users/gitre/IdeaProjects/IFSP/WEB1/IFitness/src/main/resources/json/users.json";
         try{
             File file = new File(path);
             if(file.exists()){
@@ -28,5 +29,14 @@ public class UsersReader {
         }
 
         return users;
+    }
+
+    public static User findUserByEmail(String email) {
+        List<User> users = read();
+        for (User user : users){
+            if(user.getEmail().equals(email)) return user;
+        }
+
+        return null;
     }
 }
