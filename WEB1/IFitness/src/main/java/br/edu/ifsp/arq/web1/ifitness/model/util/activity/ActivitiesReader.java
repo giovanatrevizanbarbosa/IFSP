@@ -1,6 +1,7 @@
 package br.edu.ifsp.arq.web1.ifitness.model.util.activity;
 
 import br.edu.ifsp.arq.web1.ifitness.model.Activity;
+import br.edu.ifsp.arq.web1.ifitness.model.User;
 import br.edu.ifsp.arq.web1.ifitness.model.util.LocalDateTypeAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -11,6 +12,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ActivitiesReader {
@@ -32,5 +34,17 @@ public class ActivitiesReader {
         }
 
         return activities;
+    }
+
+    public static List<Activity> readByUser(User user){
+        List<Activity> activities = read();
+        List<Activity> userActivities = new ArrayList<>();
+
+        for(Activity a : activities){
+            if(a.getUser().getId().equals(user.getId())){
+                userActivities.add(a);
+            }
+        }
+        return userActivities;
     }
 }

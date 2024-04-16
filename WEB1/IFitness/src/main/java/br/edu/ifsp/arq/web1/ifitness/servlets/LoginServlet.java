@@ -41,8 +41,8 @@ public class LoginServlet extends HttpServlet {
             cookie.setMaxAge(60*60*24); // um dia -> 86400 segundos
             resp.addCookie(cookie);
 
-            req.setAttribute("name", user.getName());
-            dispatcher = req.getRequestDispatcher("/activity-register.jsp");
+            req.setAttribute("user", user);
+            dispatcher = req.getRequestDispatcher("/homeServlet");
         }else{
             // remover cookie
             Cookie[] cookies = req.getCookies();
