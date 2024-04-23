@@ -40,6 +40,12 @@ public class HomeServlet extends HttpServlet {
             req.setAttribute("userActivities", userActivities);
             req.setAttribute("name", user.getName());
 
+            if (req.getAttribute("result") != null){
+                if (req.getAttribute("result").equals("updated")){
+                    req.setAttribute("result", "updated");
+                }
+            }
+
             dispatcher = req.getRequestDispatcher("/home.jsp");
         }else{
             // remover cookie

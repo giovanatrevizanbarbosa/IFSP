@@ -47,4 +47,15 @@ public class ActivitiesReader {
         }
         return userActivities;
     }
+
+    public static Activity findById(Long id) {
+        List<Activity> activities = read();
+
+        for(Activity a : activities){
+            if(a.getId().equals(id)){
+                return a;
+            }
+        }
+        return null;
+    }
 }
