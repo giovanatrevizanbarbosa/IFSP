@@ -19,13 +19,12 @@ public class ActivitiesReader {
     public static List<Activity> read(){
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).create();
         List<Activity> activities = null;
-        String path = "C:/Users/gitre/IdeaProjects/IFSP/WEB1/IFitness/src/main/resources/json/activities.json";
         try{
-            File file = new File(path);
+            File file = new File("C:/Users/gitre/IdeaProjects/IFSP/WEB1/IFitness/src/main/resources/json/activities.json");
             if(file.exists()){
-                BufferedReader buffer = new BufferedReader(new FileReader(path));
-                TypeToken<List<Activity>> type = new TypeToken<List<Activity>>() {};
+                BufferedReader buffer = new BufferedReader(new FileReader("C:/Users/gitre/IdeaProjects/IFSP/WEB1/IFitness/src/main/resources/json/activities.json"));
 
+                TypeToken<List<Activity>> type = new TypeToken<List<Activity>>() {};
                 activities = gson.fromJson(buffer, type);
                 buffer.close();
             }
@@ -57,5 +56,24 @@ public class ActivitiesReader {
             }
         }
         return null;
+    }
+
+    public static List<Activity> getActivityByFilter(ActivitiesFilter filter){
+        List<Activity> activities = readByUser(filter.getUser());
+
+        if(filter.getType() != null) {
+            activities = activities.stream()
+                    .filter(a -> a.getType() == filter.getType()).toList();
+        }
+        if(filter.getInitialDate() != null){
+            activities = activities.stream()
+                    .filter(a -> a.getDate().isAfter(filter.getInitialDate())).toList();
+        }
+        if(filter.getFinalDate() != null){
+            activities = activities.stream()
+                    .filter(a -> a.getDate().isBefore(filter.getFinalDate())).toList();
+        }
+
+        return activities;
     }
 }

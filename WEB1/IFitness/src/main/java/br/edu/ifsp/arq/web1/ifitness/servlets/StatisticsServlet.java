@@ -1,22 +1,17 @@
 package br.edu.ifsp.arq.web1.ifitness.servlets;
 
-import br.edu.ifsp.arq.web1.ifitness.model.Activity;
-import br.edu.ifsp.arq.web1.ifitness.model.User;
-import br.edu.ifsp.arq.web1.ifitness.model.util.activity.ActivitiesReader;
-import br.edu.ifsp.arq.web1.ifitness.model.util.users.UsersReader;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
-import java.util.List;
 
-@WebServlet("/homeServlet")
-public class HomeServlet extends HttpServlet {
+@WebServlet("/statistics")
+public class StatisticsServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public HomeServlet() {
+    public StatisticsServlet() {
         super();
     }
 
@@ -27,12 +22,16 @@ public class HomeServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher dispatcher = null;
+        String url;
+
         HttpSession session = req.getSession(false);
-        User user = (User)session.getAttribute("user");
-        // listar atividades do usuário logado
-        List<Activity> userActivities = ActivitiesReader.readByUser(user);
-        req.setAttribute("userActivities", userActivities);
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/home.jsp");
+        if (session.getAttribute("user") == null) {
+            url = "/login.jsp";
+        }else{
+            url = "/statistics.jsp";
+        }
+        dispatcher = req.getRequestDispatcher(url);
         dispatcher.forward(req, resp);
     }
 }

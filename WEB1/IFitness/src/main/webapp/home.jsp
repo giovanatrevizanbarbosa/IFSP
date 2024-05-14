@@ -12,57 +12,137 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="css/home.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
     <title>IFitness - Página Inicial</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">IFitness</a>
+        <a class="navbar-brand" href="homeServlet">IFitness</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="activity-register.jsp">Nova Atividade</a>
+                <li class="nav-item mx-2">
+                    <a class="btn btn-primary" href="activityRegister">Nova Atividade</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Estatísticas</a>
+                <li class="nav-item mx-2">
+                    <a class="btn btn-secondary" href="statistics">Estatísticas</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                <li class="nav-item mx-2 dropdown">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">
-                        ${name}
+                        ${sessionScope.user.name}
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Minha Conta</a></li>
+                        <li><a class="btn btn-secondary" href="#">Minha Conta</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Sair</a></li>
+                        <li><a class="btn btn-secondary" href="logout">Sair</a></li>
                     </ul>
                 </li>
             </ul>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Pesquisar" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+                <button class="btn btn-success" type="button">Pesquisar</button>
             </form>
         </div>
     </div>
 </nav>
 <div class="container">
-    <div class="center col-lg-12 col-sm-12 mt-5">
+    <i id="toggle-theme" class="btn bi bi-moon-fill"></i>
+    <div class="center col-lg-12 col-sm-12 mt-5 text-center">
         <c:if test="${result == 'updated'}">
-            <div class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
+            <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
                 <strong>Atividade salva.</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         </c:if>
-        <h1 class="text-center">Atividades</h1>
+        <form action="activitySearch" method="post">
+            <div class="row">
+                <div class="col-12 col-lg-3">
+                    <div class="mb-2">
+                        <label for="type">Tipo</label>
+                        <select class="form-select"
+                                name="type" id="type">
+                            <c:if test="${activityType == null}">
+                                <option value="" selected>Selecione</option>
+                            </c:if>
+                            <c:choose>
+                                <c:when test="${activityType == 'CAMINHADA'}">
+                                    <option value="CAMINHADA" selected>Caminhada</option>
+                                </c:when>
+                                <c:when test="${activityType != 'CAMINHADA'}">
+                                    <option value="CAMINHADA">Caminhada</option>
+                                </c:when>
+                            </c:choose>
+
+                            <c:choose>
+                                <c:when test="${activityType == 'CICLISMO'}">
+                                    <option value="CICLISMO" selected>Ciclismo</option>
+                                </c:when>
+                                <c:when test="${activityType != 'CICLISMO'}">
+                                    <option value="CICLISMO">Ciclismo</option>
+                                </c:when>
+                            </c:choose>
+
+                            <c:choose>
+                                <c:when test="${activityType == 'CORRIDA'}">
+                                    <option value="CORRIDA" selected>Corrida</option>
+                                </c:when>
+                                <c:when test="${activityType != 'CORRIDA'}">
+                                    <option value="CORRIDA">Corrida</option>
+                                </c:when>
+                            </c:choose>
+
+                            <c:choose>
+                                <c:when test="${activityType == 'NATACAO'}">
+                                    <option value="NATACAO" selected>Natação</option>
+                                </c:when>
+                                <c:when test="${activityType != 'NATACAO'}">
+                                    <option value="NATACAO">Natação</option>
+                                </c:when>
+                            </c:choose>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3">
+                    <div class="mb-2">
+                        <label for="initial-date">Data inicial</label>
+                        <c:if test="${initialDate == null}">
+                            <input value="" type="date" name="initial-date" id="initial-date"
+                                   class="form-control">
+                        </c:if>
+                        <c:if test="${initialDate != null}">
+                            <input value="${initialDate}" type="date" name="initial-date" id="initial-date"
+                                   class="form-control">
+                        </c:if>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3">
+                    <div class="mb-2">
+                        <label for="final-date">Data final</label>
+                        <c:if test="${finalDate == null}">
+                            <input value="" type="date" name="final-date" id="final-date"
+                                   class="form-control">
+                        </c:if>
+                        <c:if test="${finalDate != null}">
+                            <input value="${finalDate}" type="date" name="final-date" id="final-date"
+                                   class="form-control">
+                        </c:if>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 mt-3">
+                    <button type="submit" class="btn btn-primary">Filtrar</button>
+                </div>
+            </div>
+        </form>
         <c:choose>
             <c:when test="${fn:length(userActivities) > 0}">
-                <table class="table table-striped table-hover table-responsive">
+                <table class="table table-striped table-hover table-responsive mt-5">
                     <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -126,7 +206,9 @@
                 </table>
             </c:when>
             <c:otherwise>
-                <c:out value="Nenhuma atividade cadastrada."></c:out>
+                <div class="container p-5 m-5">
+                    <c:out value="Nenhuma atividade cadastrada."></c:out>
+                </div>
             </c:otherwise>
         </c:choose>
 
@@ -137,5 +219,6 @@
         crossorigin="anonymous"></script>
 <script type="text/javascript" src="scripts/home.js"></script>
 <script src="https://kit.fontawesome.com/7f49ede8b9.js" crossorigin="anonymous"></script>
+<script src="scripts/main.js" defer></script>
 </body>
 </html>
