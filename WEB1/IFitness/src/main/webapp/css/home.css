@@ -13,6 +13,6 @@ img {
     height: 30px;
 }
 
-button {
+button, #link {
     width: 100%;
 }

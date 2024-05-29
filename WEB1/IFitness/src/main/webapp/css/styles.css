@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-.btn.btn-primary, .btn.btn-secondary, .btn.btn-success{
+.btn.btn-primary, .btn.btn-secondary, .btn.btn-success, .btn.btn-danger{
     width: 100%;
     border-radius: 12px;
     border-style: solid;
@@ -8,7 +8,7 @@
     color: white;
 }
 
-.btn.btn-primary:active, .btn.btn-secondary:active, .btn.btn-success:active {
+.btn.btn-primary:active, .btn.btn-secondary:active, .btn.btn-success:active, .btn.btn-danger:active {
     border-color: transparent;
     border-width: 0 0 0;
     color: white;
@@ -38,6 +38,14 @@
     --bs-btn-line-height: 2rem;
     background-color: #198754;
     border-color: #136941;
+    padding: 0;
+    height: 45px;
+}
+
+.btn.btn-danger{
+    --bs-btn-line-height: 2.5rem;
+    background-color: #dc3545;
+    border-color: #a92b37;
     padding: 0;
     height: 45px;
 }

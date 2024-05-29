@@ -190,15 +190,19 @@
                             <td class="pt-3">${activity.distance}</td>
                             <td class="pt-3">${activity.duration}</td>
                             <td>
-                                <a class="btn" data-bs-toggle="tooltip" data-bs-placement="top"
-                                   data-bs-title="Editar"
-                                   href="activityRegister?action=update&activity-id=${activity.id}">
-                                    <i class="bi bi-pencil-fill"></i>
-                                </a>
-                                <a class="btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Excluir"
-                                   href="activityRegister?action=delete&activity-id=${activity.id}">
-                                    <i class="bi bi-trash-fill"></i>
-                                </a>
+                                <span data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
+                                    <a class="btn" href="activityRegister?action=update&activity-id=${activity.id}">
+                                        <i class="bi bi-pencil-fill"></i>
+                                    </a>
+                                </span>
+
+                                <span data-bs-toggle="tooltip" data-bs-placement="top" title="Excluir">
+                                    <a type="button" class="btn" data-bs-toggle="modal"
+                                       data-bs-target="#myModal" data-bs-id="${activity.id}">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </a>
+                                </span>
+
                             </td>
                         </tr>
                     </c:forEach>
@@ -211,7 +215,25 @@
                 </div>
             </c:otherwise>
         </c:choose>
-
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal" tabindex="-1" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Excluir</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Deseja realmente que deseja <strong>excluir</strong> a atividade?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <a id="link" href="activityRegister?action=delete&activity-id=${activity.id}"
+                   class="btn btn-danger">Excluir</a>
+            </div>
+        </div>
     </div>
 </div>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
