@@ -20,9 +20,9 @@ public class ActivitiesReader {
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).create();
         List<Activity> activities = null;
         try{
-            File file = new File("C:/Users/gitre/IdeaProjects/IFSP/WEB1/IFitness/src/main/resources/json/activities.json");
+            File file = new File("/home/giovanatb/IdeaProjects/IFSP/WEB1/IFitness/src/main/resources/json/activities.json");
             if(file.exists()){
-                BufferedReader buffer = new BufferedReader(new FileReader("C:/Users/gitre/IdeaProjects/IFSP/WEB1/IFitness/src/main/resources/json/activities.json"));
+                BufferedReader buffer = new BufferedReader(new FileReader("/home/giovanatb/IdeaProjects/IFSP/WEB1/IFitness/src/main/resources/json/activities.json"));
 
                 TypeToken<List<Activity>> type = new TypeToken<List<Activity>>() {};
                 activities = gson.fromJson(buffer, type);
@@ -39,12 +39,15 @@ public class ActivitiesReader {
         List<Activity> activities = read();
         List<Activity> userActivities = new ArrayList<>();
 
-        for(Activity a : activities){
-            if(a.getUser().getId().equals(user.getId())){
-                userActivities.add(a);
+        if (activities != null) {
+            for(Activity a : activities){
+                if(a.getUser().getId().equals(user.getId())){
+                    userActivities.add(a);
+                }
             }
+            return userActivities;
         }
-        return userActivities;
+        return null;
     }
 
     public static Activity findById(Long id) {

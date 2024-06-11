@@ -15,7 +15,7 @@ public class UsersWriter {
     public static boolean write(User user){
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).create();
         List<User> users = UsersReader.read();
-        String path = "C:/Users/gitre/IdeaProjects/IFSP/WEB1/IFitness/src/main/resources/json/users.json";
+        String path = "/home/giovanatb/IdeaProjects/IFSP/WEB1/IFitness/src/main/resources/json/users.json";
 
         if(users ==  null){
             // quando não tem nenhum objeto cadastrado

@@ -15,7 +15,7 @@ public class ActivitiesWriter {
     public static boolean write(Activity activity) {
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).create();
         List<Activity> activities = ActivitiesReader.read();
-        String path = "C:/Users/gitre/IdeaProjects/IFSP/WEB1/IFitness/src/main/resources/json/activities.json";
+        String path = "/home/giovanatb/IdeaProjects/IFSP/WEB1/IFitness/src/main/resources/json/activities.json";
 
         if (activities == null) {
             // quando não tem nenhum objeto cadastrado
@@ -44,7 +44,7 @@ public class ActivitiesWriter {
     public static boolean update(Activity activity) {
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).create();
         List<Activity> activities = ActivitiesReader.read();
-        String path = "C:/Users/gitre/IdeaProjects/IFSP/WEB1/IFitness/src/main/resources/json/activities.json";
+        String path = "/home/giovanatb/IdeaProjects/IFSP/WEB1/IFitness/src/main/resources/json/activities.json";
 
         int index = 0;
         for (Activity a : activities) {
@@ -71,7 +71,7 @@ public class ActivitiesWriter {
     public static boolean delete(Activity activity){
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).create();
         List<Activity> activities = ActivitiesReader.read();
-        String path = "C:/Users/gitre/IdeaProjects/IFSP/WEB1/IFitness/src/main/resources/json/activities.json";
+        String path = "/home/giovanatb/IdeaProjects/IFSP/WEB1/IFitness/src/main/resources/json/activities.json";
 
         activities.remove(activity);
 

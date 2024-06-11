@@ -14,7 +14,7 @@ public class UsersReader {
     public static List<User> read(){
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).create();
         List<User> users = null;
-        String path = "C:/Users/gitre/IdeaProjects/IFSP/WEB1/IFitness/src/main/resources/json/users.json";
+        String path = "/home/giovanatb/IdeaProjects/IFSP/WEB1/IFitness/src/main/resources/json/users.json";
         try{
             File file = new File(path);
             if(file.exists()){

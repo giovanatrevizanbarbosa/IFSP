@@ -61,10 +61,10 @@ public class ActivityRegisterServlet extends HttpServlet {
         var activityIdParam = req.getParameter("activity-id");
 
         String url = null;
+        RequestDispatcher dispatcher = null;
         if(activityIdParam != null){
             Long activityId = Long.parseLong(activityIdParam);
             Activity activity = ActivitiesReader.findById(activityId);
-            RequestDispatcher dispatcher = null;
             if(activity != null) {
                 if(action.equals("update")) {
                     req.setAttribute("activity", activity);
@@ -81,11 +81,11 @@ public class ActivityRegisterServlet extends HttpServlet {
                 }
             }else {
                 url = "/homeServlet";
-                dispatcher = req.getRequestDispatcher(url);
-                dispatcher.forward(req, resp);
             }
         }else{
             url = "/activity-register.jsp";
         }
+        dispatcher = req.getRequestDispatcher(url);
+        dispatcher.forward(req, resp);
     }
 }
