@@ -3,17 +3,36 @@ const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
     return new bootstrap.Tooltip(tooltipTriggerEl)
 });
 
-const myModal = document.getElementById('myModal');
+var myModal = document.getElementById('myModal');
+var bsModal = new bootstrap.Modal(document.getElementById('myModal'));
 myModal.addEventListener('show.bs.modal', function (event) {
     // Botão que acionou o modal
-    const button = event.relatedTarget;
+    var button = event.relatedTarget;
     // Extrair informações dos atributos data-bs-*
-    const id = button.getAttribute('data-bs-id');
+    var id = button.getAttribute('data-bs-id');
 
     // Atualizar o conteúdo do modal
-    const modalTitle = myModal.querySelector('.modal-title')
-    const modalFooterA = myModal.querySelector('.modal-footer a')
+    var modalTitle = myModal.querySelector('.modal-title');
+    var modalButton = myModal.querySelector('.modal-footer #delete');
 
     modalTitle.textContent = 'Excluir Atividade ' + id;
-    modalFooterA.href = 'activityRegister?action=remove&activity-id=' + id;
-})
+    modalButton.addEventListener('click', ()=>{
+        deleteActivity(button, id);
+        bsModal.hide();
+    });
+});
+
+function deleteActivity(button, id) {
+    var row = button.parentNode.parentNode.parentNode // button->span->td->tr
+    const url =  `activityRegister?action=remove&activity-id=${id}`;
+    fetch(url)
+        .then(response =>{
+            return response.json(); // converte para json
+        })
+        .then(data =>{
+            if (data) {
+                row.parentNode.removeChild(row); // remover linha da tabela
+            }
+        })
+        .catch(error => console.log('Erro de solicitação', error)); // lidar com os erros por catch
+}

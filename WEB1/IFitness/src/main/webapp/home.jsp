@@ -230,8 +230,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <a id="link" href="activityRegister?action=delete&activity-id=${activity.id}"
-                   class="btn btn-danger">Excluir</a>
+                <button type="button" id="delete" class="btn btn-danger">Excluir</button>
             </div>
         </div>
     </div>

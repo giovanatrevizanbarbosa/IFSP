@@ -5,6 +5,7 @@ import br.edu.ifsp.arq.web1.ifitness.model.ActivityType;
 import br.edu.ifsp.arq.web1.ifitness.model.User;
 import br.edu.ifsp.arq.web1.ifitness.model.util.activity.ActivitiesReader;
 import br.edu.ifsp.arq.web1.ifitness.model.util.activity.ActivitiesWriter;
+import com.google.gson.Gson;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -63,22 +64,28 @@ public class ActivityRegisterServlet extends HttpServlet {
         if(activityIdParam != null){
             Long activityId = Long.parseLong(activityIdParam);
             Activity activity = ActivitiesReader.findById(activityId);
+            RequestDispatcher dispatcher = null;
             if(activity != null) {
                 if(action.equals("update")) {
                     req.setAttribute("activity", activity);
                     url = "/activity-register.jsp";
+                    dispatcher = req.getRequestDispatcher(url);
+                    dispatcher.forward(req, resp);
                 }
                 if(action.equals("remove")) {
-                    ActivitiesWriter.delete(activity);
-                    url = "/homeServlet";
+                    Boolean response = ActivitiesWriter.delete(activity);
+                    Gson gson = new Gson();
+                    String json = gson.toJson(response);
+                    resp.setContentType("application/json");
+                    resp.getWriter().write(json.toString());
                 }
             }else {
                 url = "/homeServlet";
+                dispatcher = req.getRequestDispatcher(url);
+                dispatcher.forward(req, resp);
             }
         }else{
             url = "/activity-register.jsp";
         }
-        RequestDispatcher dispatcher = req.getRequestDispatcher(url);
-        dispatcher.forward(req, resp);
     }
 }
