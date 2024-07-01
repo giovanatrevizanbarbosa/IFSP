@@ -2,6 +2,7 @@ package br.edu.ifsp.arq.web1.ifitness.model.util.activity;
 
 import br.edu.ifsp.arq.web1.ifitness.model.Activity;
 import br.edu.ifsp.arq.web1.ifitness.model.User;
+import br.edu.ifsp.arq.web1.ifitness.model.dto.ActivityByType;
 import br.edu.ifsp.arq.web1.ifitness.model.util.LocalDateTypeAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -13,7 +14,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ActivitiesReader {
     public static List<Activity> read(){
@@ -70,13 +73,34 @@ public class ActivitiesReader {
         }
         if(filter.getInitialDate() != null){
             activities = activities.stream()
-                    .filter(a -> a.getDate().isAfter(filter.getInitialDate())).toList();
+                    .filter(a -> a.getDate().isAfter(filter.getInitialDate().minusDays(1))).toList();
         }
         if(filter.getFinalDate() != null){
             activities = activities.stream()
-                    .filter(a -> a.getDate().isBefore(filter.getFinalDate())).toList();
+                    .filter(a -> a.getDate().isBefore(filter.getFinalDate().plusDays(1))).toList();
         }
 
         return activities;
+    }
+
+    public static List<ActivityByType> getActivitiesStatisticsByType(User user) {
+        List<Activity> activities = readByUser(user);
+        Map<String, Integer> activitiesCount = new HashMap<>();
+
+        for(Activity activity : activities){
+            String activityType = String.valueOf(activity.getType());
+            if (!activitiesCount.containsKey(activityType)) {
+                activitiesCount.put(activityType, 0);
+            }
+            activitiesCount.compute(activityType, (k, currentCount) -> currentCount + 1);
+        }
+
+        List<ActivityByType> activityTypeList = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : activitiesCount.entrySet()) {
+            ActivityByType activityByType = new ActivityByType(entry.getKey(), entry.getValue());
+            activityTypeList.add(activityByType);
+        }
+
+        return activityTypeList;
     }
 }
