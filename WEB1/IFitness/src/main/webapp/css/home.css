@@ -13,6 +13,6 @@ img {
     height: 30px;
 }
 
-button, #link {
+button:not(.navbar-toggler, .btn-close), #link {
     width: 100%;
 }

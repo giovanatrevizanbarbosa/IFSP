@@ -26,22 +26,18 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item mx-2">
-                    <a class="btn btn-primary" href="activityRegister">Nova Atividade</a>
+                    <a class="nav-link" href="activityRegister">Nova Atividade</a>
                 </li>
                 <li class="nav-item mx-2">
-                    <a class="btn btn-secondary" href="statistics">Estatísticas</a>
+                    <a class="nav-link" href="statistics">Estatísticas</a>
                 </li>
                 <li class="nav-item mx-2 dropdown">
-                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                       aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
                         ${sessionScope.user.name}
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="btn btn-secondary" href="#">Minha Conta</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="btn btn-secondary" href="logout">Sair</a></li>
+                        <li><a class="dropdown-item" href="#">Minha Conta</a></li>
+                        <li><a class="dropdown-item" href="logout">Sair</a></li>
                     </ul>
                 </li>
             </ul>
@@ -53,11 +49,10 @@
     </div>
 </nav>
 <div class="container">
-    <i id="toggle-theme" class="btn bi bi-moon-fill"></i>
     <div class="center col-lg-12 col-sm-12 mt-5 text-center">
-        <c:if test="${result == 'updated'}">
+        <c:if test="${result == 'registered'}">
             <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
-                <strong>Atividade salva.</strong>
+                <strong>Atividade salva com sucesso.</strong>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         </c:if>

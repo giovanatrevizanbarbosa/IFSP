@@ -15,7 +15,6 @@
 </head>
 <body>
 <div class="container text-center">
-    <i id="toggle-theme" class="btn bi bi-moon-fill"></i>
     <div class="col-lg-4 offset-lg-4 col-sm-12 mt-5">
         <c:choose>
             <c:when test="${result == 'registered'}">

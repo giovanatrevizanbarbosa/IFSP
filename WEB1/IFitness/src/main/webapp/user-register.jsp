@@ -80,8 +80,6 @@
             </div>
 
         </form>
-
-        <i id="toggle-theme" class="btn bi bi-moon-fill"></i>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

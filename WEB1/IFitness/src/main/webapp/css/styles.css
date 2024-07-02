@@ -54,23 +54,6 @@
     filter: brightness(1.1);
 }
 
-#toggle-theme{
-    position: fixed;
-    z-index: 9;
-    bottom: 20px;
-    right: 20px;
-}
-
-.dropdown-menu{
-    background-color: transparent;
-    border-color: transparent;
-}
-
-.dropdown-divider{
-    opacity: 0;
-    margin: 0.1rem;
-}
-
 @media (min-width: 992px) {
     .dropdown:hover .dropdown-menu{
         display: block;

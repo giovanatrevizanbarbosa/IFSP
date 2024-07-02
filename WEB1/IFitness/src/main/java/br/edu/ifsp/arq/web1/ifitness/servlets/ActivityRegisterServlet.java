@@ -51,7 +51,7 @@ public class ActivityRegisterServlet extends HttpServlet {
                 req.setAttribute("result", "registered");
             }
         }
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/activity-register.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/homeServlet");
         dispatcher.forward(req, resp);
     }
 
