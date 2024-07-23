@@ -15,31 +15,7 @@
     <title>IFitness - Página de Cadastro de Atividade</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="homeServlet">IFitness</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item mx-2">
-                    <a class="nav-link" href="statistics">Estatísticas</a>
-                </li>
-                <li class="nav-item mx-2 dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                        ${sessionScope.user.name}
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Minha Conta</a></li>
-                        <li><a class="dropdown-item" href="logout">Sair</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<jsp:include page="navbar.jsp"></jsp:include>
 <div class="container">
     <div class="col-lg-6 offset-lg-3 col-sm-12 mt-5">
         <c:if test="${result == 'notRegistered'}">

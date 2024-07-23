@@ -16,41 +16,31 @@
     <title>IFitness - Estatísticas</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="homeServlet">IFitness</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item mx-2">
-                    <a class="nav-link" href="activityRegister">Nova Atividade</a>
-                </li>
-                <li class="nav-item mx-2 dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                        ${sessionScope.user.name}
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Minha Conta</a></li>
-                        <li><a class="dropdown-item" href="logout">Sair</a></li>
-                    </ul>
-                </li>
-            </ul>
+<jsp:include page="navbar.jsp"></jsp:include>
+<div class="container">
+    <div class="row my-3">
+        <div class="col">
+            <h4>Estatísticas das Atividades Físicas Realizadas</h4>
         </div>
     </div>
-</nav>
-<div class="container">
-    <div class="center col-lg-12 col-sm-12 mt-5 text-center">
-        <h2>Em breve!</h2>
+    <div class="row my-2">
+        <div class="col-md-6 py-1">
+            <div class="card">
+                <h5 class="card-title m-4">Atividades por Tipo</h5>
+                <div class="card-body">
+                    <canvas id="chDonut1"></canvas>
+                </div>
+            </div>
+        </div>
     </div>
+
 </div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js'></script>
+<script type="text/javascript" src="scripts/statistics.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 <script type="text/javascript" src="scripts/home.js"></script>
 <script src="https://kit.fontawesome.com/7f49ede8b9.js" crossorigin="anonymous"></script>
-<script src="scripts/main.js"></script>
 </body>
 </html>

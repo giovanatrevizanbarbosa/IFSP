@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("Java8MapApi")
 public class ActivitiesReader {
     public static List<Activity> read(){
         Gson gson = new GsonBuilder().registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter()).create();
@@ -68,6 +69,7 @@ public class ActivitiesReader {
         List<Activity> activities = readByUser(filter.getUser());
 
         if(filter.getType() != null) {
+            
             activities = activities.stream()
                     .filter(a -> a.getType() == filter.getType()).toList();
         }
@@ -88,11 +90,12 @@ public class ActivitiesReader {
         Map<String, Integer> activitiesCount = new HashMap<>();
 
         for(Activity activity : activities){
-            String activityType = String.valueOf(activity.getType());
+            String activityType = activity.getType().getDescription();
             if (!activitiesCount.containsKey(activityType)) {
                 activitiesCount.put(activityType, 0);
             }
-            activitiesCount.compute(activityType, (k, currentCount) -> currentCount + 1);
+            int currentCount = activitiesCount.get(activityType);
+            activitiesCount.put(activityType, currentCount + 1);
         }
 
         List<ActivityByType> activityTypeList = new ArrayList<>();

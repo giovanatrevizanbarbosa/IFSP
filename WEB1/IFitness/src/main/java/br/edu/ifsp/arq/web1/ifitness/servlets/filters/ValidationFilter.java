@@ -15,7 +15,8 @@ import java.net.http.HttpResponse;
                ,"/activityRegister"
                ,"/home.jsp"
                ,"/activity-register.jsp"
-               , "/activitySearch"}
+               , "/activitySearch"
+               ,"/statistics"}
        ,filterName = "Authorization")
 public class ValidationFilter implements Filter {
     @Override
